@@ -1,0 +1,18 @@
+# GitHub Action: Automated jsDelivr Cache Purge
+# Triggers on every push to main branch
+
+name: Purge jsDelivr Cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge jsDelivr CDN Cache
+        run: |
+          curl -s -X POST "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/css/calc__matching-funnel__styles.css"
+          curl -s -X POST "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/js/calc__matching-funnel__scripts.js"
