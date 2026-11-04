@@ -1,15 +1,14 @@
 /*
 Component / Artifact: ConvertCalculator Matching Funnel - Unified Stylesheet
-Version: v5.0
-Date: 2026-11-03
+Version: v5.1
+Date: 2026-11-04
 Changelog:
-- Unified and merged all 3 form stylesheets into a single master CSS file.
-- Scoped specific variations cleanly by parent wrapper IDs (#get-started_form, #start-today_form, #adhd-clinic_form).
-- Integrated Apple Safe Area inset support (env(safe-area-inset-bottom)) for iOS Chrome & Safari.
-- Integrated virtual keyboard suppression for fixed footer via :has(input:focus, textarea:focus).
-- Added mobile touch-action stabilization for range slider (AGE_Q).
-- Preserved ADHD Clinic dark theme (Dark Ivy background, Coax typography, pure white text, peach desktop footer, Sand hover).
-- Standardized therapist card grid (240px photo column, fluid buttons, uniform heights) across all funnels.
+- Fully integrated all <head> typography rules directly into the stylesheet, eliminating external <head> styling dependencies.
+- Standardized Cormorant Garamond 400 & Deep Ivy typography baseline for #get-started_form and #start-today_form.
+- Standardized Coax 400 & Pure White typography override for ADHD Clinic (#adhd-clinic_form).
+- Unified responsive heading scale across all viewports (Desktop: 55px/36px, Tablet 991px: 48px/32px, Mobile 479px: 38px/26px).
+- Integrated clinic text-highlight SVG geometries and Swiper disabled button suppression.
+- Preserved Apple Safe Area insets (env(safe-area-inset-bottom)), soft keyboard suppression, and slider touch-action stabilization.
 */
 
 /* ==========================================================================
@@ -52,20 +51,63 @@ body {
   touch-action: pan-y !important;
 }
 
-/* ==========================================================================
-   2. TYPOGRAPHY & HEADING HIERARCHY (DEFAULT LIGHT BASELINE)
-   ========================================================================== */
-.form_header-wrapper .cc__heading-element h2 {
-  font-size: 60px !important;
-  font-weight: 500 !important;
+/* Swiper Controls Cleanup */
+.swiper-button-disabled {
+  display: none !important;
 }
 
+/* ==========================================================================
+   2. TYPOGRAPHY & HEADING HIERARCHY (DEFAULT: CORMORANT GARAMOND 400)
+   ========================================================================== */
+/* Enforce Cormorant Garamond 400 and Ivy color on all default step titles */
+.form_header-wrapper .cc__heading-element h1,
+.form_header-wrapper .cc__heading-element h2,
+.form_header-wrapper .cc__heading-element p,
+.heading,
+.heading *,
+.heading p,
+.heading div,
+.heading span,
+.heading-s,
+.heading-s *,
+.heading-s p,
+.heading-s div,
+.heading-s span {
+  font-family:
+    var(--title-font), 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 400 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  letter-spacing: normal !important;
+  font-style: normal !important;
+}
+
+/* Desktop Baseline: Main Step Heading (.heading) */
+.form_header-wrapper .cc__heading-element h1,
+.form_header-wrapper .cc__heading-element h2,
+.heading,
+.heading *,
+.heading p,
+.heading div {
+  font-size: 55px !important;
+  line-height: 1.3 !important;
+}
+
+/* Desktop Baseline: Intermediate Quiz Question Heading (.heading-s) */
+.heading-s,
+.heading-s *,
+.heading-s p,
+.heading-s div,
+.heading-s span {
+  font-size: 36px !important;
+  line-height: 1.25 !important;
+}
+
+/* Header Paragraph & Body Accent Typography */
 .form_header-wrapper p {
   font-size: 22px !important;
   color: var(--dark-ivy-body-text-color, #0a1b1f) !important;
 }
 
-/* Header paragraph emphasis: Pure Poppins Italic in Peach */
 .form_header-wrapper p em,
 .form_header-wrapper p i {
   font-family: 'Poppins', sans-serif !important;
@@ -84,18 +126,6 @@ body {
   font-size: 1em !important;
   line-height: inherit !important;
   color: var(--peach, #eea880) !important;
-}
-
-.heading p,
-.heading h2 {
-  font-size: 55px !important;
-  line-height: 1.3 !important;
-}
-
-.heading-s h2,
-.heading-s p {
-  font-size: 40px !important;
-  line-height: 1.3 !important;
 }
 
 label,
@@ -154,7 +184,6 @@ label,
   justify-content: center;
 }
 
-/* Fluid responsive choice buttons */
 .cc__radioGroup-question-button {
   text-align: center !important;
   width: 100% !important;
@@ -200,7 +229,7 @@ label,
   width: 100%;
   box-sizing: border-box !important;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 16px;
   margin: 0 auto !important;
 }
 
@@ -288,12 +317,10 @@ label,
   border-color: #e05638 !important;
 }
 
-/* Native Error suppression on Contact Fields */
 .form_contact-section-field .cc__element-error {
   display: none !important;
 }
 
-/* Centered Error for Choice Questions */
 .cc__radioGroup-question .cc__element-error,
 .cc__radioGroup-question-wrapper .cc__element-error,
 .cc__multipleSelection-question .cc__element-error,
@@ -312,7 +339,6 @@ label,
   display: block !important;
 }
 
-/* Contact Checkboxes */
 .cc__checkbox-question-wrapper.contact-section_checkbox,
 .contact-section_checkbox {
   width: 100% !important;
@@ -385,7 +411,6 @@ label,
   color: var(--stone, #839794) !important;
 }
 
-/* Contact Divider */
 .form_contact-divider,
 .cc__divider-element-wrapper[data-selector-element-id='A8m8tgE3cZhxpfdQx'],
 .cc__divider-element-wrapper {
@@ -841,7 +866,7 @@ label,
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   9.1 #adhd-clinic_form (ADHD Clinic CMS Template: Dark Ivy Theme)
+   9.1 #adhd-clinic_form (ADHD Clinic CMS Template: Dark Ivy Theme & Coax Font)
    -------------------------------------------------------------------------- */
 #adhd-clinic_form .cc {
   background-color: var(--ivy-title-color, #16434a) !important;
@@ -851,22 +876,27 @@ label,
   flex-direction: column;
 }
 
-/* Clinic Typography & Coax Font */
-#adhd-clinic_form .cc__title-title,
-#adhd-clinic_form .heading p {
-  font-family: 'coax', sans-serif !important;
-  font-size: 50px !important;
+/* Enforce Coax Heading Font & Pure White Typography on Dark Ivy Cards */
+#adhd-clinic_form .form_header-wrapper .cc__heading-element h1,
+#adhd-clinic_form .form_header-wrapper .cc__heading-element h2,
+#adhd-clinic_form .form_header-wrapper .cc__heading-element p,
+#adhd-clinic_form .heading,
+#adhd-clinic_form .heading *,
+#adhd-clinic_form .heading p,
+#adhd-clinic_form .heading div,
+#adhd-clinic_form .heading span,
+#adhd-clinic_form .heading-s,
+#adhd-clinic_form .heading-s *,
+#adhd-clinic_form .heading-s p,
+#adhd-clinic_form .heading-s div,
+#adhd-clinic_form .heading-s span,
+#adhd-clinic_form .cc__title-title {
+  font-family:
+    var(--_clinics---clinic-heading-font, 'Coax'), 'Coax', sans-serif !important;
   font-weight: 400 !important;
-  line-height: 1.2 !important;
   color: var(--pure-white, #ffffff) !important;
-}
-
-#adhd-clinic_form .heading-s p {
-  font-family: 'coax', sans-serif !important;
-  font-size: 35px !important;
-  font-weight: 400 !important;
-  line-height: 1.2 !important;
-  color: var(--pure-white, #ffffff) !important;
+  letter-spacing: normal !important;
+  font-style: normal !important;
 }
 
 #adhd-clinic_form .calculator p,
@@ -1021,6 +1051,73 @@ label,
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2) !important;
 }
 
+/* ADHD Clinic Text Highlight Geometries */
+.clinic-adhd_highlight-underline {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 1;
+}
+
+.clinic-adhd_highlight-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background-image: url('https://cdn.prod.website-files.com/625ea83f782e7712faae42df/686e7e09abed3c28ce3fca83_text-hightlight-1.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center bottom;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.clinic-adhd_highlight-underline-2 {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 1;
+}
+
+.clinic-adhd_highlight-underline-2::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 120%;
+  height: 15px;
+  background-image: url('https://cdn.prod.website-files.com/625ea83f782e7712faae42df/686e7e09d9423af7ea9e9962_text-hightlight-3.svg');
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  background-position: center bottom;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.clinic-adhd_highlight-circle {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 1;
+}
+
+.clinic-adhd_highlight-circle::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -35%;
+  width: 190%;
+  height: 240%;
+  background-image: url('https://cdn.prod.website-files.com/625ea83f782e7712faae42df/686e7e09744d214137838c4a_text-hightlight-2.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* --------------------------------------------------------------------------
    9.2 #get-started_form (Get Started Funnel Specifics)
    -------------------------------------------------------------------------- */
@@ -1046,18 +1143,24 @@ label,
    10.1 Tablet (max-width: 991px)
    -------------------------------------------------------------------------- */
 @media only screen and (max-width: 991px) {
-  .heading p {
-    font-size: 50px !important;
-  }
-
-  .heading h2 {
-    font-size: 50px !important;
+  /* Enforce Standard Heading Scale on Tablet (48px / 32px) */
+  .form_header-wrapper .cc__heading-element h1,
+  .form_header-wrapper .cc__heading-element h2,
+  .heading,
+  .heading *,
+  .heading p,
+  .heading div {
+    font-size: 48px !important;
     line-height: 1.2 !important;
   }
 
-  .heading-s h2 {
+  .heading-s,
+  .heading-s *,
+  .heading-s p,
+  .heading-s div,
+  .heading-s span {
     font-size: 32px !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
   }
 
   .header_start-btn .cc__button {
@@ -1143,25 +1246,6 @@ label,
 
   .form_header-wrapper .cc__heading-element h2 {
     font-size: 55px !important;
-  }
-
-  .heading p {
-    font-size: 48px !important;
-  }
-
-  .heading h2 {
-    font-size: 48px !important;
-    line-height: 1.2 !important;
-  }
-
-  .heading-s h2 {
-    font-size: 35px !important;
-    line-height: 1.3 !important;
-  }
-
-  .heading-s p {
-    font-size: 35px !important;
-    line-height: 1.3 !important;
   }
 
   .contact-section_checkbox.cc__checkbox-question-wrapper,
@@ -1450,6 +1534,26 @@ label,
    10.3 Mobile Portrait (max-width: 479px)
    -------------------------------------------------------------------------- */
 @media only screen and (max-width: 479px) {
+  /* Enforce Standard Heading Scale on Mobile Portrait (38px / 26px) */
+  .form_header-wrapper .cc__heading-element h1,
+  .form_header-wrapper .cc__heading-element h2,
+  .heading,
+  .heading *,
+  .heading p,
+  .heading div {
+    font-size: 38px !important;
+    line-height: 1.2 !important;
+  }
+
+  .heading-s,
+  .heading-s *,
+  .heading-s p,
+  .heading-s div,
+  .heading-s span {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+  }
+
   .h100 {
     padding-left: 5px;
     padding-right: 5px;
@@ -1477,7 +1581,6 @@ label,
     max-width: 280px !important;
   }
 
-  /* Fluid responsive buttons for narrow screens */
   .cc__radioGroup-question-button,
   .cc__radio-question-item,
   .cc__checkbox-question-wrapper {
