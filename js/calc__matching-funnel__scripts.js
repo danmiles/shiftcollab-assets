@@ -1,16 +1,11 @@
 /**
- * Component / Artifact: ConvertCalculator Matching Funnel - Core Engine
- * Version: v5.1
+ * File: js/calc__matching-funnel__scripts.js
+ * Version: v5.2
  * Date: 2026-11-04
  * Changelog:
- * - Scoped strictly to ConvertCalculator engine, analytics, and navigation.
- * - Removed all unrelated page-level dependencies (Swiper sliders, VideoAsk widget).
- * - Fully refactored to modern ECMAScript (ES6+) with zero 'var' usage.
- * - Integrated GTM telemetry bridge with event deduplication.
- * - Integrated Make.com webhook dispatch with HubSpot UTK and UTM capture on CC submission.
- * - Enforced safe visible-only contact validation to prevent progression blockage on Age and subsequent steps.
- * - Preserved Mobile Safari / iOS Chrome fixed footer containment guard.
- * - Included dynamic CTA start button delegation, UI hiding, and decorative arrow injection.
+ * - Removed card-skipping condition in fixFixedFooterContainment to unblock fixed footer on mobile WebKit.
+ * - Enforced visible-only contact validation guard (preserves Back button and unblocks Age step progression).
+ * - Preserved GTM telemetry bridge and Make.com webhook sync on form submission.
  */
 
 (() => {
@@ -106,32 +101,18 @@
     let parent = footer.parentElement;
     while (parent && parent !== document.body) {
       parent.style.setProperty('z-index', '9999', 'important');
+      parent.style.setProperty('transform', 'none', 'important');
+      parent.style.setProperty('-webkit-transform', 'none', 'important');
+      parent.style.setProperty('filter', 'none', 'important');
+      parent.style.setProperty('perspective', 'none', 'important');
+      parent.style.setProperty('contain', 'none', 'important');
+      parent.style.setProperty('will-change', 'auto', 'important');
 
       const style = window.getComputedStyle(parent);
-      if (style.transform !== 'none') {
-        parent.style.setProperty('transform', 'none', 'important');
-      }
-      if (style.willChange && style.willChange !== 'auto') {
-        parent.style.setProperty('will-change', 'auto', 'important');
-      }
-      if (style.filter !== 'none') {
-        parent.style.setProperty('filter', 'none', 'important');
-      }
-      if (style.perspective !== 'none') {
-        parent.style.setProperty('perspective', 'none', 'important');
-      }
-      if (style.contain && style.contain !== 'none') {
-        parent.style.setProperty('contain', 'none', 'important');
-      }
-
-      const isMainCard = parent.classList.contains(
-        'start-page_questionnaire-form_content',
-      );
       if (
-        !isMainCard &&
-        (style.overflow === 'hidden' ||
-          style.overflowX === 'hidden' ||
-          style.overflowY === 'hidden')
+        style.overflow === 'hidden' ||
+        style.overflowX === 'hidden' ||
+        style.overflowY === 'hidden'
       ) {
         parent.style.setProperty('overflow', 'visible', 'important');
       }

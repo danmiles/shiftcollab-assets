@@ -1,14 +1,12 @@
 /*
-Component / Artifact: ConvertCalculator Matching Funnel - Unified Stylesheet
-Version: v5.1
+File: css/calc__matching-funnel__styles.css
+Version: v5.2
 Date: 2026-11-04
 Changelog:
-- Fully integrated all <head> typography rules directly into the stylesheet, eliminating external <head> styling dependencies.
-- Standardized Cormorant Garamond 400 & Deep Ivy typography baseline for #get-started_form and #start-today_form.
-- Standardized Coax 400 & Pure White typography override for ADHD Clinic (#adhd-clinic_form).
-- Unified responsive heading scale across all viewports (Desktop: 55px/36px, Tablet 991px: 48px/32px, Mobile 479px: 38px/26px).
-- Integrated clinic text-highlight SVG geometries and Swiper disabled button suppression.
-- Preserved Apple Safe Area insets (env(safe-area-inset-bottom)), soft keyboard suppression, and slider touch-action stabilization.
+- Neutralized transform, filter, and contain properties on all parent card containers (.start-page_questionnaire-form_content, etc.) to allow fixed mobile footer viewport docking.
+- Enforced Apple Safe Area insets (env(safe-area-inset-bottom)) for iPhone gesture bar and Chrome bottom toolbar clearance.
+- Integrated keyboard suppression (:has(input:focus)) to prevent footer from rising over form inputs.
+- Standardized Cormorant Garamond (default) and Coax (ADHD clinic) heading scales across all viewports.
 */
 
 /* ==========================================================================
@@ -35,7 +33,6 @@ body {
   align-items: center;
 }
 
-/* Default Light Theme Canvas */
 .cc-calculator {
   background-color: var(--cloud, #e7e6e1);
   transition: background-color 0.3s ease;
@@ -51,7 +48,6 @@ body {
   touch-action: pan-y !important;
 }
 
-/* Swiper Controls Cleanup */
 .swiper-button-disabled {
   display: none !important;
 }
@@ -59,7 +55,6 @@ body {
 /* ==========================================================================
    2. TYPOGRAPHY & HEADING HIERARCHY (DEFAULT: CORMORANT GARAMOND 400)
    ========================================================================== */
-/* Enforce Cormorant Garamond 400 and Ivy color on all default step titles */
 .form_header-wrapper .cc__heading-element h1,
 .form_header-wrapper .cc__heading-element h2,
 .form_header-wrapper .cc__heading-element p,
@@ -81,7 +76,6 @@ body {
   font-style: normal !important;
 }
 
-/* Desktop Baseline: Main Step Heading (.heading) */
 .form_header-wrapper .cc__heading-element h1,
 .form_header-wrapper .cc__heading-element h2,
 .heading,
@@ -92,7 +86,6 @@ body {
   line-height: 1.3 !important;
 }
 
-/* Desktop Baseline: Intermediate Quiz Question Heading (.heading-s) */
 .heading-s,
 .heading-s *,
 .heading-s p,
@@ -102,7 +95,6 @@ body {
   line-height: 1.25 !important;
 }
 
-/* Header Paragraph & Body Accent Typography */
 .form_header-wrapper p {
   font-size: 22px !important;
   color: var(--dark-ivy-body-text-color, #0a1b1f) !important;
@@ -229,7 +221,7 @@ label,
   width: 100%;
   box-sizing: border-box !important;
   border-radius: 8px;
-  padding: 16px;
+  padding: 1rem;
   margin: 0 auto !important;
 }
 
@@ -437,7 +429,6 @@ label,
   margin-top: 0 !important;
 }
 
-/* Hide Premature Submission Callout on Form Steps */
 [data-selector-element-id='vRmc2iNqECKf3CrsA']:has(.cc__submission-response) {
   display: none !important;
 }
@@ -469,7 +460,6 @@ label,
   padding-bottom: 10px;
 }
 
-/* Primary NEXT & Final 'SEE YOUR RESULTS' Buttons (Desktop Baseline) */
 .footer_button-wrapper
   [data-selector-element-id='vRmc2iNqECKf3CrsA']
   .cc__button,
@@ -556,7 +546,6 @@ label,
   vertical-align: middle !important;
 }
 
-/* Subtle Ghost Style for Previous/Back Button (Desktop) */
 .footer_button-wrapper
   [data-selector-element-id='73KXcMA4EKc8LnCGM']
   .cc__button {
@@ -757,7 +746,6 @@ label,
   box-sizing: border-box !important;
 }
 
-/* Button 1: Primary CTA "Book a Session" */
 .form_final-btn-group .cc__button-element-wrapper:first-child .cc__button {
   background-color: var(--peach, #eea880) !important;
   color: var(--ivy-title-color, #16434a) !important;
@@ -774,7 +762,6 @@ label,
   box-shadow: 0 4px 14px rgba(22, 67, 74, 0.25) !important;
 }
 
-/* Buttons 2 & 3: Secondary CTAs */
 .form_final-btn-group
   .cc__button-element-wrapper:not(:first-child)
   .cc__button {
@@ -865,9 +852,7 @@ label,
    9. CONTEXTUAL SCOPED OVERRIDES BY WRAPPER ID
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   9.1 #adhd-clinic_form (ADHD Clinic CMS Template: Dark Ivy Theme & Coax Font)
-   -------------------------------------------------------------------------- */
+/* 9.1 #adhd-clinic_form (ADHD Clinic CMS Template) */
 #adhd-clinic_form .cc {
   background-color: var(--ivy-title-color, #16434a) !important;
 }
@@ -876,7 +861,6 @@ label,
   flex-direction: column;
 }
 
-/* Enforce Coax Heading Font & Pure White Typography on Dark Ivy Cards */
 #adhd-clinic_form .form_header-wrapper .cc__heading-element h1,
 #adhd-clinic_form .form_header-wrapper .cc__heading-element h2,
 #adhd-clinic_form .form_header-wrapper .cc__heading-element p,
@@ -918,7 +902,6 @@ label,
   padding: 80px 50px;
 }
 
-/* Inverted Contact Fields for Dark Background */
 #adhd-clinic_form .form_contact-section-field label,
 #adhd-clinic_form .form_contact-section-field .cc__question-title {
   color: var(--pure-white, #ffffff) !important;
@@ -951,7 +934,6 @@ label,
   color: #ff9076 !important;
 }
 
-/* ADHD Clinic Desktop Footer: Solid Peach with Deep Ivy Buttons & Sand Hover */
 #adhd-clinic_form .form-get-started_footer {
   background-color: var(--peach, #eea880) !important;
 }
@@ -1027,7 +1009,6 @@ label,
   color: var(--ivy-title-color, #16434a) !important;
 }
 
-/* ADHD Clinic Results View: Eliminate Top White Stripe Gap */
 #adhd-clinic_form .kEilOV,
 #adhd-clinic_form [data-selector-element-id='wsbjtKNrcmMG5FF9u'],
 #adhd-clinic_form
@@ -1051,7 +1032,7 @@ label,
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* ADHD Clinic Text Highlight Geometries */
+/* ADHD Clinic Text Highlights */
 .clinic-adhd_highlight-underline {
   position: relative;
   display: inline-block;
@@ -1118,18 +1099,14 @@ label,
   pointer-events: none;
 }
 
-/* --------------------------------------------------------------------------
-   9.2 #get-started_form (Get Started Funnel Specifics)
-   -------------------------------------------------------------------------- */
+/* 9.2 #get-started_form Specifics */
 #get-started_form .intro-pointer-arrow,
 #get-started_form .form-arrow-indicator,
 #get-started_form [class*='arrow-indicator'] {
   display: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   9.3 #start-today_form (Ads Landing Pages Specifics)
-   -------------------------------------------------------------------------- */
+/* 9.3 #start-today_form Specifics */
 #start-today_form .start-page-ads_style .cc__button {
   padding: 25px 30px !important;
   font-size: 16px !important;
@@ -1139,11 +1116,8 @@ label,
    10. RESPONSIVE BREAKPOINTS & MOBILE ENGINE
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   10.1 Tablet (max-width: 991px)
-   -------------------------------------------------------------------------- */
+/* 10.1 Tablet (max-width: 991px) */
 @media only screen and (max-width: 991px) {
-  /* Enforce Standard Heading Scale on Tablet (48px / 32px) */
   .form_header-wrapper .cc__heading-element h1,
   .form_header-wrapper .cc__heading-element h2,
   .heading,
@@ -1187,17 +1161,32 @@ label,
   }
 }
 
-/* --------------------------------------------------------------------------
-   10.2 Mobile Landscape & Tablet Portrait (max-width: 768px)
-   -------------------------------------------------------------------------- */
+/* 10.2 Mobile Landscape & Tablet Portrait (max-width: 768px) */
 @media only screen and (max-width: 768px) {
+  /* HARD RESET: Strip containing block traps from all parents on mobile */
+  .start-page_questionnaire-form,
+  .start-page_qst-form_container,
+  .start-page_questionnaire-form_content-wrap,
+  .start-page_questionnaire-form_content,
+  .start-page_questionnaire-form_convert-calc,
+  .start-page-ads_qst-form_content-right,
+  .calculator,
+  .cc-calculator,
+  .cc {
+    transform: none !important;
+    -webkit-transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none !important;
+    will-change: auto !important;
+  }
+
   .cc {
     overflow-x: clip !important;
     overflow-y: visible !important;
     height: auto !important;
   }
 
-  /* Provide bottom clearance for question views, safely accounting for Apple Home Bar & Fixed Footer */
   .quiz-content,
   .overflow-view,
   .cc__view-container,
@@ -1216,7 +1205,6 @@ label,
     margin-bottom: 26px !important;
   }
 
-  /* Stack fallback review screen columns on tablet & mobile */
   [data-selector-element-id='M8cBsGmnmZLGXbauR'] {
     display: flex !important;
     flex-direction: column !important;
@@ -1282,7 +1270,6 @@ label,
     padding: 10px 15px !important;
   }
 
-  /* Final Stage Card: Expanded & Generous on Mobile L / Tablet (480px - 768px) */
   .final_container
     > .cc__container-element-wrapper:has(.form_final_card-content),
   .final_container .cc__container-element-wrapper,
@@ -1362,7 +1349,6 @@ label,
     justify-content: center;
   }
 
-  /* Elevate form containers to ensure fixed footer stays above bottom page sections */
   .start-page_questionnaire-form,
   .start-page_qst-form_container,
   .start-page_questionnaire-form_content-wrap,
@@ -1388,7 +1374,7 @@ label,
       visibility 0.2s ease !important;
   }
 
-  /* Soft keyboard suppression: Gracefully hide fixed footer during active mobile typing */
+  /* Soft keyboard suppression */
   body:has(
       input:focus:not([type='checkbox']):not([type='radio']),
       textarea:focus
@@ -1432,7 +1418,6 @@ label,
     flex-wrap: nowrap !important;
   }
 
-  /* Mobile Inverted Navigation Buttons on Peach Footer (< 768px) */
   .footer_button-wrapper
     [data-selector-element-id='vRmc2iNqECKf3CrsA']
     .cc__button,
@@ -1472,7 +1457,6 @@ label,
     color: var(--pure-white, #ffffff) !important;
   }
 
-  /* ADHD Hover variant on Mobile */
   #adhd-clinic_form
     .footer_button-wrapper
     [data-selector-element-id='vRmc2iNqECKf3CrsA']
@@ -1514,7 +1498,6 @@ label,
     margin-left: 4px !important;
   }
 
-  /* Secondary PREVIOUS button: Dark Ivy text on peach bar */
   .footer_button-wrapper
     [data-selector-element-id='73KXcMA4EKc8LnCGM']
     .cc__button {
@@ -1530,11 +1513,8 @@ label,
   }
 }
 
-/* --------------------------------------------------------------------------
-   10.3 Mobile Portrait (max-width: 479px)
-   -------------------------------------------------------------------------- */
+/* 10.3 Mobile Portrait (max-width: 479px) */
 @media only screen and (max-width: 479px) {
-  /* Enforce Standard Heading Scale on Mobile Portrait (38px / 26px) */
   .form_header-wrapper .cc__heading-element h1,
   .form_header-wrapper .cc__heading-element h2,
   .heading,
@@ -1590,7 +1570,6 @@ label,
     margin-right: auto !important;
   }
 
-  /* Tighten footer layout on ultra-narrow viewports with Safe Area preservation */
   .footer_content {
     padding: 6px 10px 4px 10px !important;
     gap: 4px !important;
@@ -1626,7 +1605,6 @@ label,
     height: 36px !important;
   }
 
-  /* Final Stage Card: Compact Mobile Portrait */
   .final_container
     > .cc__container-element-wrapper:has(.form_final_card-content),
   .final_container .cc__container-element-wrapper,
