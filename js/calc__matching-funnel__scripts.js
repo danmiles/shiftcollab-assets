@@ -1,11 +1,11 @@
 /**
  * File: js/calc__matching-funnel__scripts.js
- * Version: v5.2
+ * Version: v5.3
  * Date: 2026-11-04
  * Changelog:
- * - Removed card-skipping condition in fixFixedFooterContainment to unblock fixed footer on mobile WebKit.
- * - Enforced visible-only contact validation guard (preserves Back button and unblocks Age step progression).
- * - Preserved GTM telemetry bridge and Make.com webhook sync on form submission.
+ * - Optimized fixFixedFooterContainment to eliminate forced layout recalculation thrashing.
+ * - Removed intrusive ancestor z-index/overflow mutations while preserving viewport containment resets.
+ * - Maintained required contact validation, telemetry bridge, and Make.com webhook dispatch.
  */
 
 (() => {
@@ -90,7 +90,7 @@
   };
 
   // ==========================================================================
-  // 3. MOBILE SAFARI & IOS CHROME FIXED FOOTER CONTAINMENT GUARD
+  // 3. FIXED FOOTER VIEWPORT CONTAINMENT RESET
   // ==========================================================================
   const fixFixedFooterContainment = () => {
     if (!window.matchMedia('(max-width: 768px)').matches) return;
@@ -100,29 +100,22 @@
 
     let parent = footer.parentElement;
     while (parent && parent !== document.body) {
-      parent.style.setProperty('z-index', '9999', 'important');
-      parent.style.setProperty('transform', 'none', 'important');
-      parent.style.setProperty('-webkit-transform', 'none', 'important');
-      parent.style.setProperty('filter', 'none', 'important');
-      parent.style.setProperty('perspective', 'none', 'important');
-      parent.style.setProperty('contain', 'none', 'important');
-      parent.style.setProperty('will-change', 'auto', 'important');
-
-      const style = window.getComputedStyle(parent);
-      if (
-        style.overflow === 'hidden' ||
-        style.overflowX === 'hidden' ||
-        style.overflowY === 'hidden'
-      ) {
-        parent.style.setProperty('overflow', 'visible', 'important');
+      if (parent.style.transform && parent.style.transform !== 'none') {
+        parent.style.setProperty('transform', 'none', 'important');
+        parent.style.setProperty('-webkit-transform', 'none', 'important');
       }
-
+      if (parent.style.contain && parent.style.contain !== 'none') {
+        parent.style.setProperty('contain', 'none', 'important');
+      }
+      if (parent.style.filter && parent.style.filter !== 'none') {
+        parent.style.setProperty('filter', 'none', 'important');
+      }
       parent = parent.parentElement;
     }
   };
 
   // ==========================================================================
-  // 4. CONTACT FIELD LABELS & PREMATURE SUBMISSION RESOLUTION
+  // 4. CONTACT FIELD LABELS & FOOTER NAVIGATION RESOLUTION
   // ==========================================================================
   const formatContactFieldLabels = () => {
     const emailWrapper = document.querySelector(

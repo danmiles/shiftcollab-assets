@@ -1,12 +1,12 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.2
+Version: v5.3
 Date: 2026-11-04
 Changelog:
-- Neutralized transform, filter, and contain properties on all parent card containers (.start-page_questionnaire-form_content, etc.) to allow fixed mobile footer viewport docking.
-- Enforced Apple Safe Area insets (env(safe-area-inset-bottom)) for iPhone gesture bar and Chrome bottom toolbar clearance.
-- Integrated keyboard suppression (:has(input:focus)) to prevent footer from rising over form inputs.
-- Standardized Cormorant Garamond (default) and Coax (ADHD clinic) heading scales across all viewports.
+- Removed destructive :has(input:focus) keyboard suppression block that caused mobile/desktop footer disappearance on input focus.
+- Stabilized fixed footer viewport docking across mobile viewports.
+- Cleaned up transitions to eliminate ghost fading of footer controls.
+- Maintained brand variables, Cormorant Garamond typography hierarchy, and ADHD sub-clinic scopes.
 */
 
 /* ==========================================================================
@@ -1163,7 +1163,7 @@ label,
 
 /* 10.2 Mobile Landscape & Tablet Portrait (max-width: 768px) */
 @media only screen and (max-width: 768px) {
-  /* HARD RESET: Strip containing block traps from all parents on mobile */
+  /* Strip containing block traps from all parents on mobile */
   .start-page_questionnaire-form,
   .start-page_qst-form_container,
   .start-page_questionnaire-form_content-wrap,
@@ -1369,20 +1369,9 @@ label,
     padding-bottom: env(safe-area-inset-bottom, 12px) !important;
     box-shadow: 0 -3px 12px rgba(22, 67, 74, 0.08) !important;
     box-sizing: border-box !important;
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2s ease !important;
-  }
-
-  /* Soft keyboard suppression */
-  body:has(
-      input:focus:not([type='checkbox']):not([type='radio']),
-      textarea:focus
-    )
-    .form-get-started_footer {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    visibility: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 
   .footer_content {
