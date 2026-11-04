@@ -1,12 +1,12 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.3
+Version: v5.4
 Date: 2026-11-04
 Changelog:
-- Removed destructive :has(input:focus) keyboard suppression block that caused mobile/desktop footer disappearance on input focus.
-- Stabilized fixed footer viewport docking across mobile viewports.
-- Cleaned up transitions to eliminate ghost fading of footer controls.
-- Maintained brand variables, Cormorant Garamond typography hierarchy, and ADHD sub-clinic scopes.
+- Architected .start-page_button-arrow layout: anchored to the left of the 'START NOW' CTA on desktop (min-width: 992px).
+- Centered decorative arrow vertically above CTA button across tablet and mobile viewports (max-width: 991px).
+- Resolved horizontal inline-wrapping glitch at intermediate viewports (500px-768px).
+- Preserved fixed mobile footer stability, Apple Safe Area insets, and zero-suppression focus handling.
 */
 
 /* ==========================================================================
@@ -226,8 +226,31 @@ label,
 }
 
 /* ==========================================================================
-   4. HEADER MAIN CTA BUTTON ("START NOW")
+   4. HEADER MAIN CTA BUTTON ("START NOW") & DECORATIVE ARROW
    ========================================================================== */
+.header_start-btn {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.header_start-btn .cc__button-element {
+  position: relative !important;
+  overflow: visible !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.header_start-btn .cc__button-element > div,
+.header_start-btn .kWHZI,
+.header_start-btn [class*='kWHZI'] {
+  position: relative !important;
+  overflow: visible !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .header_start-btn .cc__button {
   padding: 24px 60px !important;
   background-color: var(--peach, #eea880) !important;
@@ -243,6 +266,8 @@ label,
   border: 3px solid var(--peach, #eea880) !important;
   cursor: pointer !important;
   box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .header_start-btn .cc__button:hover {
@@ -265,6 +290,21 @@ label,
 
 .cc__button {
   width: 180px !important;
+}
+
+/* Desktop Decorative Arrow (min-width: 992px): Anchored to the left of the button */
+@media only screen and (min-width: 992px) {
+  .start-page_button-arrow {
+    position: absolute !important;
+    left: -115px !important;
+    top: -55px !important;
+    width: 130px !important;
+    height: auto !important;
+    max-width: none !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+    display: block !important;
+  }
 }
 
 /* ==========================================================================
@@ -1147,6 +1187,27 @@ label,
     font-size: 28px !important;
   }
 
+  /* Centered Arrow Column Layout on Tablet */
+  .header_start-btn .cc__button-element > div,
+  .header_start-btn .kWHZI,
+  .header_start-btn [class*='kWHZI'] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+
+  .start-page_button-arrow {
+    position: static !important;
+    display: block !important;
+    margin: 0 auto 12px auto !important;
+    width: 110px !important;
+    max-width: 110px !important;
+    height: auto !important;
+    pointer-events: none !important;
+  }
+
   .form_final_card-content {
     grid-template-columns: 215px 1fr !important;
     column-gap: 18px !important;
@@ -1532,6 +1593,12 @@ label,
     padding: 18px 36px !important;
     font-size: 18px !important;
     border-radius: 100px !important;
+  }
+
+  .start-page_button-arrow {
+    width: 95px !important;
+    max-width: 95px !important;
+    margin: 0 auto 8px auto !important;
   }
 
   .form_header-wrapper {
