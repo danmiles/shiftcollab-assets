@@ -1,0 +1,1574 @@
+/*
+Component / Artifact: ConvertCalculator Matching Funnel - Unified Stylesheet
+Version: v5.0
+Date: 2026-11-03
+Changelog:
+- Unified and merged all 3 form stylesheets into a single master CSS file.
+- Scoped specific variations cleanly by parent wrapper IDs (#get-started_form, #start-today_form, #adhd-clinic_form).
+- Integrated Apple Safe Area inset support (env(safe-area-inset-bottom)) for iOS Chrome & Safari.
+- Integrated virtual keyboard suppression for fixed footer via :has(input:focus, textarea:focus).
+- Added mobile touch-action stabilization for range slider (AGE_Q).
+- Preserved ADHD Clinic dark theme (Dark Ivy background, Coax typography, pure white text, peach desktop footer, Sand hover).
+- Standardized therapist card grid (240px photo column, fluid buttons, uniform heights) across all funnels.
+*/
+
+/* ==========================================================================
+   1. GLOBAL ARCHITECTURE & BASE CONTAINER STYLES
+   ========================================================================== */
+body {
+  scroll-behavior: auto !important;
+}
+
+.calculator {
+  position: relative;
+  z-index: 998 !important;
+}
+
+.cc {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.h100 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Default Light Theme Canvas */
+.cc-calculator {
+  background-color: var(--cloud, #e7e6e1);
+  transition: background-color 0.3s ease;
+}
+
+/* Range Slider Touch-Action Stabilization for Mobile Safari & Chrome */
+.cc__slider-question input[type='range'],
+.cc__slider-question [class*='Slider'],
+.cc__slider-question [class*='track'],
+.cc__slider-question [class*='thumb'],
+[data-selector-element-id='AGE_Q'],
+[data-selector-element-id='AGE_Q'] * {
+  touch-action: pan-y !important;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY & HEADING HIERARCHY (DEFAULT LIGHT BASELINE)
+   ========================================================================== */
+.form_header-wrapper .cc__heading-element h2 {
+  font-size: 60px !important;
+  font-weight: 500 !important;
+}
+
+.form_header-wrapper p {
+  font-size: 22px !important;
+  color: var(--dark-ivy-body-text-color, #0a1b1f) !important;
+}
+
+/* Header paragraph emphasis: Pure Poppins Italic in Peach */
+.form_header-wrapper p em,
+.form_header-wrapper p i {
+  font-family: 'Poppins', sans-serif !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+  font-size: 1em !important;
+  line-height: inherit !important;
+  color: var(--peach, #eea880) !important;
+}
+
+.form_header-wrapper p strong em,
+.form_header-wrapper p em strong {
+  font-family: 'Poppins', sans-serif !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  font-size: 1em !important;
+  line-height: inherit !important;
+  color: var(--peach, #eea880) !important;
+}
+
+.heading p,
+.heading h2 {
+  font-size: 55px !important;
+  line-height: 1.3 !important;
+}
+
+.heading-s h2,
+.heading-s p {
+  font-size: 40px !important;
+  line-height: 1.3 !important;
+}
+
+label,
+.cc__question-title {
+  font-weight: 300 !important;
+}
+
+.image-width img {
+  max-width: 120px !important;
+}
+
+.quiz-content {
+  padding-top: 16px;
+}
+
+.hidden-mobile {
+  display: none !important;
+}
+
+.flex-mobile,
+.form_nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.form_header-wrapper {
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   3. QUESTION GRIDS & CHOICE BUTTONS
+   ========================================================================== */
+.sc-hiOjR {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 784px;
+}
+
+.sc-dlyeST {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc__radioGroup-question div {
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Fluid responsive choice buttons */
+.cc__radioGroup-question-button {
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 300px !important;
+  box-sizing: border-box !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+}
+
+.cc__radio-question-item {
+  width: 100% !important;
+  max-width: 300px !important;
+  box-sizing: border-box !important;
+  font-weight: 300 !important;
+  border-radius: 8px;
+  padding: 15px 20px;
+  background-color: var(--pure-white, #ffffff);
+  margin-bottom: 0 !important;
+}
+
+.healthcare-benefits_section button {
+  width: 100% !important;
+  max-width: 350px !important;
+  box-sizing: border-box !important;
+}
+
+.price-therapy_section button {
+  width: 100% !important;
+  max-width: 350px !important;
+  box-sizing: border-box !important;
+  min-height: 80px;
+}
+
+.cc__checkbox-question-wrapper label {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+}
+
+.cc__checkbox-question-wrapper {
+  background-color: var(--pure-white, #ffffff);
+  max-width: 300px;
+  width: 100%;
+  box-sizing: border-box !important;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0 auto !important;
+}
+
+/* ==========================================================================
+   4. HEADER MAIN CTA BUTTON ("START NOW")
+   ========================================================================== */
+.header_start-btn .cc__button {
+  padding: 24px 60px !important;
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  width: auto !important;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  border-radius: 100px !important;
+  border: 3px solid var(--peach, #eea880) !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+.header_start-btn .cc__button:hover {
+  background-color: var(--sand, #b36e48) !important;
+  border-color: var(--pure-white, #ffffff) !important;
+  color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 6px 22px rgba(179, 110, 72, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.header_start-btn .cc__button:active {
+  transform: translateY(0);
+}
+
+.header_start-btn .material-symbols-outlined {
+  font-size: 32px !important;
+  vertical-align: middle !important;
+  margin-left: 8px !important;
+}
+
+.cc__button {
+  width: 180px !important;
+}
+
+/* ==========================================================================
+   5. CONTACT SECTION & VALIDATION ERRORS
+   ========================================================================== */
+.form_contact-section-field {
+  margin-bottom: 10px;
+}
+
+.form_contact-section-field label,
+.form_contact-section-field .cc__question-title {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+}
+
+.cc__label-subtext {
+  font-family: 'Poppins', sans-serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: var(--stone, #839794) !important;
+  font-size: 13px !important;
+  display: inline !important;
+}
+
+.cc__inline-error {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #e05638 !important;
+  margin-left: 8px !important;
+  display: inline-block !important;
+  line-height: 1.2 !important;
+}
+
+.has-field-error {
+  border-color: #e05638 !important;
+}
+
+/* Native Error suppression on Contact Fields */
+.form_contact-section-field .cc__element-error {
+  display: none !important;
+}
+
+/* Centered Error for Choice Questions */
+.cc__radioGroup-question .cc__element-error,
+.cc__radioGroup-question-wrapper .cc__element-error,
+.cc__multipleSelection-question .cc__element-error,
+.cc__question:not(.form_contact-section-field) .cc__element-error {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #e05638 !important;
+  margin: 14px auto 0 !important;
+  display: block !important;
+}
+
+/* Contact Checkboxes */
+.cc__checkbox-question-wrapper.contact-section_checkbox,
+.contact-section_checkbox {
+  width: 100% !important;
+  max-width: 100% !important;
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 14px 0 0 0 !important;
+  box-sizing: border-box !important;
+}
+
+.contact-section_checkbox[data-selector-element-id='qtauHbnPXkneHaJsg'],
+.form_contact-section-field + .contact-section_checkbox {
+  margin-top: 24px !important;
+}
+
+.contact-section_checkbox > div,
+.contact-section_checkbox [class*='sc-dskThN'],
+.contact-section_checkbox .sc-dskThN {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+.contact-section_checkbox .cc__checkbox-question {
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.contact-section_checkbox .cc__checkbox-question + div,
+.contact-section_checkbox .cc__question-description,
+.contact-section_checkbox .ljnphJ {
+  flex-grow: 1 !important;
+  text-align: left !important;
+  padding-left: 0 !important;
+}
+
+.contact-section_checkbox .cc__question-description p {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.contact-section_checkbox .cc__question-description strong,
+.contact-section_checkbox .cc__question-description b {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  font-style: normal !important;
+}
+
+.contact-section_checkbox .cc__question-description em,
+.contact-section_checkbox .cc__question-description i {
+  font-family: 'Poppins', sans-serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: var(--stone, #839794) !important;
+}
+
+/* Contact Divider */
+.form_contact-divider,
+.cc__divider-element-wrapper[data-selector-element-id='A8m8tgE3cZhxpfdQx'],
+.cc__divider-element-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+.cc__divider-element {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.form_contact-divider hr,
+.cc__divider-element div {
+  border-color: var(--stone, #839794) !important;
+  margin: 0 !important;
+}
+
+.contact-section_checkbox[data-selector-element-id='7yvpHEwhZwKtaB5Ew'] {
+  margin-top: 0 !important;
+}
+
+/* Hide Premature Submission Callout on Form Steps */
+[data-selector-element-id='vRmc2iNqECKf3CrsA']:has(.cc__submission-response) {
+  display: none !important;
+}
+
+[data-selector-element-id='vRmc2iNqECKf3CrsA']:has(.cc__submission-response)
+  + [data-selector-element-id='4QrXupMkZZFqbNLLA'] {
+  display: block !important;
+}
+
+/* ==========================================================================
+   6. FOOTER NAVIGATION LAYOUT (DESKTOP DEFAULT)
+   ========================================================================== */
+.form-get-started_footer {
+  width: 100% !important;
+}
+
+.footer_button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Primary NEXT & Final 'SEE YOUR RESULTS' Buttons (Desktop Baseline) */
+.footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button,
+.footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button,
+.footer_content [data-selector-element-id='wxq47FTpjGqR57Pct'] .cc__button,
+.footer_content [data-selector-element-id='ZooM8SFmgQZMWz3EJ'] .cc__button {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  border: 2px solid var(--peach, #eea880) !important;
+  border-radius: var(--boeder-radius-buttons, 30px) !important;
+  padding: 10px 26px !important;
+  min-width: 130px !important;
+  width: auto !important;
+  height: auto !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 14px rgba(238, 168, 128, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+}
+
+.footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button:hover,
+.footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button:hover,
+.footer_content
+  [data-selector-element-id='wxq47FTpjGqR57Pct']
+  .cc__button:hover,
+.footer_content
+  [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+  .cc__button:hover {
+  background-color: var(--pure-white, #ffffff) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  border-color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+.footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button:active,
+.footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button:active,
+.footer_content
+  [data-selector-element-id='wxq47FTpjGqR57Pct']
+  .cc__button:active,
+.footer_content
+  [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+  .cc__button:active {
+  transform: translateY(0) !important;
+}
+
+.footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button
+  .material-symbols-outlined,
+.footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button
+  .material-symbols-outlined,
+.footer_content
+  [data-selector-element-id='wxq47FTpjGqR57Pct']
+  .cc__button
+  .material-symbols-outlined,
+.footer_content
+  [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+  .cc__button
+  .material-symbols-outlined {
+  color: inherit !important;
+  font-size: 16px !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+}
+
+/* Subtle Ghost Style for Previous/Back Button (Desktop) */
+.footer_button-wrapper
+  [data-selector-element-id='73KXcMA4EKc8LnCGM']
+  .cc__button {
+  background-color: transparent !important;
+  color: var(--light-stone, #c3cdcb) !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding: 8px 16px !important;
+  width: auto !important;
+}
+
+.footer_button-wrapper
+  [data-selector-element-id='73KXcMA4EKc8LnCGM']
+  .cc__button:hover {
+  color: var(--pure-white, #ffffff) !important;
+  background-color: transparent !important;
+}
+
+/* ==========================================================================
+   7. FINAL STEP: THERAPIST RESULTS CARD ARCHITECTURE
+   ========================================================================== */
+.final_container {
+  max-width: 960px !important;
+  margin: 0 auto !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.final_container > .cc__container-element-wrapper:has(.form_final_card-content),
+.final_container .form_final_card-content {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.form_final_card-content {
+  display: grid !important;
+  grid-template-columns: 240px 1fr !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    'photo title'
+    'photo buttons' !important;
+  column-gap: 24px !important;
+  row-gap: 16px !important;
+  align-items: center !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 4px 20px rgba(22, 67, 74, 0.06) !important;
+  min-height: 250px !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+.form_final_card-content:hover {
+  box-shadow: 0 8px 28px rgba(22, 67, 74, 0.09) !important;
+}
+
+.form_final_card-content > .cc__column-element-wrapper:nth-child(1) {
+  grid-area: photo !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 240px !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.form_final_card-content > .cc__column-element-wrapper:nth-child(1) .ifiFqk,
+.form_final_card-content
+  > .cc__column-element-wrapper:nth-child(1)
+  .cc__container-element-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.form_final-card-img {
+  width: 100% !important;
+  max-width: 240px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.form_final-card-img img,
+.form_final-card-img .cc__image-element img {
+  width: 100% !important;
+  max-width: 240px !important;
+  height: auto !important;
+  max-height: 240px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.form_final_card-content > .cc__column-element-wrapper:nth-child(2) {
+  grid-area: title !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.final_title {
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.final_title .cc__formula-result,
+.final_title .cc__formula-result-text,
+.final_title p {
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.therapist-name-parsed {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 4px !important;
+}
+
+.therapist-credentials-parsed {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  color: var(--stone, #839794) !important;
+  line-height: 1.3 !important;
+}
+
+.form_final-btn-group,
+.form_final_card-content > .cc__column-element-wrapper:nth-child(3) {
+  grid-area: buttons !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.form_final-btn-group > div,
+.form_final-btn-group .ifiFqk {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+.form_final-btn-group .cc__button-element-wrapper {
+  flex: 1 1 0 !important;
+  max-width: 200px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+}
+
+.form_final-btn-group .cc__button-element {
+  width: 100% !important;
+}
+
+.form_final-btn-group .cc__button {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 62px !important;
+  min-height: 62px !important;
+  padding: 6px 12px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+/* Button 1: Primary CTA "Book a Session" */
+.form_final-btn-group .cc__button-element-wrapper:first-child .cc__button {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+.form_final-btn-group
+  .cc__button-element-wrapper:first-child
+  .cc__button:hover {
+  background-color: var(--hover-color, #16434a) !important;
+  color: var(--pure-white, #ffffff) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(22, 67, 74, 0.25) !important;
+}
+
+/* Buttons 2 & 3: Secondary CTAs */
+.form_final-btn-group
+  .cc__button-element-wrapper:not(:first-child)
+  .cc__button {
+  background-color: var(--ivy-title-color, #16434a) !important;
+  color: var(--pure-white, #ffffff) !important;
+  font-weight: 500 !important;
+  border: none !important;
+}
+
+.form_final-btn-group
+  .cc__button-element-wrapper:not(:first-child)
+  .cc__button:hover {
+  background-color: var(--light-ivy, #2f5b63) !important;
+  color: var(--pure-white, #ffffff) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(22, 67, 74, 0.25) !important;
+}
+
+/* ==========================================================================
+   8. FALLBACK MANUAL REVIEW SCREEN ARCHITECTURE
+   ========================================================================== */
+[data-selector-element-id='RqEftDYAtpHhz7EkR'] {
+  padding-bottom: 36px !important;
+  box-sizing: border-box !important;
+}
+
+.final_logo-image,
+.final_logo-image img {
+  max-width: 130px !important;
+  max-height: 130px !important;
+  margin: 0 auto 16px auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+[data-selector-element-id='mmcW33YBqkNnwduCg'] h2,
+[data-selector-element-id='mmcW33YBqkNnwduCg'] .cc__title-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+}
+
+[data-selector-element-id='pJczhsMEkAfdfkgaE'] p {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  line-height: 1.5 !important;
+  color: var(--dark-ivy-body-text-color, #0a1b1f) !important;
+  text-align: center !important;
+}
+
+[data-selector-element-id='dPCGYH39hCqWTxY2v'] {
+  width: 100% !important;
+  margin-bottom: 30px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+[data-selector-element-id='dPCGYH39hCqWTxY2v'] .cc__button {
+  background-color: var(--ivy-title-color, #16434a) !important;
+  color: var(--pure-white, #ffffff) !important;
+  border-radius: var(--boeder-radius-buttons, 30px) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.2px !important;
+  height: 50px !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  margin: 20px auto 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+[data-selector-element-id='dPCGYH39hCqWTxY2v'] .cc__button:hover {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+}
+
+/* ==========================================================================
+   9. CONTEXTUAL SCOPED OVERRIDES BY WRAPPER ID
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   9.1 #adhd-clinic_form (ADHD Clinic CMS Template: Dark Ivy Theme)
+   -------------------------------------------------------------------------- */
+#adhd-clinic_form .cc {
+  background-color: var(--ivy-title-color, #16434a) !important;
+}
+
+#adhd-clinic_form .h100 {
+  flex-direction: column;
+}
+
+/* Clinic Typography & Coax Font */
+#adhd-clinic_form .cc__title-title,
+#adhd-clinic_form .heading p {
+  font-family: 'coax', sans-serif !important;
+  font-size: 50px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  color: var(--pure-white, #ffffff) !important;
+}
+
+#adhd-clinic_form .heading-s p {
+  font-family: 'coax', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  color: var(--pure-white, #ffffff) !important;
+}
+
+#adhd-clinic_form .calculator p,
+#adhd-clinic_form .calculator h4,
+#adhd-clinic_form .cc__question-title,
+#adhd-clinic_form .sc-cYRmzm .cc__question-title,
+#adhd-clinic_form .cc__range-question-value {
+  color: var(--pure-white, #ffffff) !important;
+}
+
+#adhd-clinic_form .sc-KzItE {
+  background-color: var(--pure-white, #ffffff) !important;
+  padding: 20px;
+}
+
+#adhd-clinic_form .form_header-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 80px 50px;
+}
+
+/* Inverted Contact Fields for Dark Background */
+#adhd-clinic_form .form_contact-section-field label,
+#adhd-clinic_form .form_contact-section-field .cc__question-title {
+  color: var(--pure-white, #ffffff) !important;
+}
+
+#adhd-clinic_form .cc__label-subtext,
+#adhd-clinic_form .contact-section_checkbox .cc__question-description em,
+#adhd-clinic_form .contact-section_checkbox .cc__question-description i {
+  color: var(--light-stone, #c3cdcb) !important;
+}
+
+#adhd-clinic_form .contact-section_checkbox .cc__question-description p,
+#adhd-clinic_form .contact-section_checkbox .cc__question-description strong,
+#adhd-clinic_form .contact-section_checkbox .cc__question-description b {
+  color: var(--pure-white, #ffffff) !important;
+}
+
+#adhd-clinic_form .cc__inline-error,
+#adhd-clinic_form .has-field-error {
+  color: #ff9076 !important;
+  border-color: #ff9076 !important;
+}
+
+#adhd-clinic_form .cc__radioGroup-question .cc__element-error,
+#adhd-clinic_form .cc__radioGroup-question-wrapper .cc__element-error,
+#adhd-clinic_form .cc__multipleSelection-question .cc__element-error,
+#adhd-clinic_form
+  .cc__question:not(.form_contact-section-field)
+  .cc__element-error {
+  color: #ff9076 !important;
+}
+
+/* ADHD Clinic Desktop Footer: Solid Peach with Deep Ivy Buttons & Sand Hover */
+#adhd-clinic_form .form-get-started_footer {
+  background-color: var(--peach, #eea880) !important;
+}
+
+#adhd-clinic_form .footer_content {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: var(--peach, #eea880) !important;
+}
+
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button,
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button,
+#adhd-clinic_form
+  .footer_content
+  [data-selector-element-id='wxq47FTpjGqR57Pct']
+  .cc__button,
+#adhd-clinic_form
+  .footer_content
+  [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+  .cc__button {
+  background-color: var(--ivy-title-color, #16434a) !important;
+  color: var(--pure-white, #ffffff) !important;
+  border: 2px solid var(--ivy-title-color, #16434a) !important;
+  box-shadow: 0 4px 14px rgba(22, 67, 74, 0.25) !important;
+}
+
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='vRmc2iNqECKf3CrsA']
+  .cc__button:hover,
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='4QrXupMkZZFqbNLLA']
+  .cc__button:hover,
+#adhd-clinic_form
+  .footer_content
+  [data-selector-element-id='wxq47FTpjGqR57Pct']
+  .cc__button:hover,
+#adhd-clinic_form
+  .footer_content
+  [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+  .cc__button:hover {
+  background-color: var(--sand, #b36e48) !important;
+  border-color: var(--sand, #b36e48) !important;
+  color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 4px 18px rgba(179, 110, 72, 0.4) !important;
+}
+
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='73KXcMA4EKc8LnCGM']
+  .cc__button {
+  color: var(--ivy-title-color, #16434a) !important;
+  opacity: 0.8 !important;
+  font-weight: 600 !important;
+}
+
+#adhd-clinic_form
+  .footer_button-wrapper
+  [data-selector-element-id='73KXcMA4EKc8LnCGM']
+  .cc__button:hover {
+  opacity: 1 !important;
+  color: var(--dark-ivy-body-text-color, #0a1b1f) !important;
+}
+
+#adhd-clinic_form .footer_progress-bar .cc__formula-result-text {
+  color: var(--ivy-title-color, #16434a) !important;
+}
+
+/* ADHD Clinic Results View: Eliminate Top White Stripe Gap */
+#adhd-clinic_form .kEilOV,
+#adhd-clinic_form [data-selector-element-id='wsbjtKNrcmMG5FF9u'],
+#adhd-clinic_form
+  .final_container
+  > .cc__container-element-wrapper:first-child {
+  margin-top: 0 !important;
+}
+
+#adhd-clinic_form .form_final-content-wrap,
+#adhd-clinic_form [data-selector-element-id='9tQhLcKgwz5G3pSdn'],
+#adhd-clinic_form [data-selector-element-id='qp7n43NcR6cXFSipM'] {
+  margin-top: 0 !important;
+  padding-top: 36px !important;
+}
+
+#adhd-clinic_form .form_final_card-content {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+#adhd-clinic_form .form_final_card-content:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9.2 #get-started_form (Get Started Funnel Specifics)
+   -------------------------------------------------------------------------- */
+#get-started_form .intro-pointer-arrow,
+#get-started_form .form-arrow-indicator,
+#get-started_form [class*='arrow-indicator'] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   9.3 #start-today_form (Ads Landing Pages Specifics)
+   -------------------------------------------------------------------------- */
+#start-today_form .start-page-ads_style .cc__button {
+  padding: 25px 30px !important;
+  font-size: 16px !important;
+}
+
+/* ==========================================================================
+   10. RESPONSIVE BREAKPOINTS & MOBILE ENGINE
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   10.1 Tablet (max-width: 991px)
+   -------------------------------------------------------------------------- */
+@media only screen and (max-width: 991px) {
+  .heading p {
+    font-size: 50px !important;
+  }
+
+  .heading h2 {
+    font-size: 50px !important;
+    line-height: 1.2 !important;
+  }
+
+  .heading-s h2 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+
+  .header_start-btn .cc__button {
+    padding: 20px 48px !important;
+    font-size: 22px !important;
+    border-radius: 100px !important;
+  }
+
+  .header_start-btn .material-symbols-outlined {
+    font-size: 28px !important;
+  }
+
+  .form_final_card-content {
+    grid-template-columns: 215px 1fr !important;
+    column-gap: 18px !important;
+    padding: 20px !important;
+  }
+
+  .form_final-card-img,
+  .form_final-card-img img,
+  .form_final-card-img .cc__image-element img {
+    max-width: 215px !important;
+    max-height: 215px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.2 Mobile Landscape & Tablet Portrait (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media only screen and (max-width: 768px) {
+  .cc {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+    height: auto !important;
+  }
+
+  /* Provide bottom clearance for question views, safely accounting for Apple Home Bar & Fixed Footer */
+  .quiz-content,
+  .overflow-view,
+  .cc__view-container,
+  .cc__view,
+  .sc-ftWlEF.sc-faCEWe.ecAwQh.gHHYKI,
+  [class*='ViewContainer'],
+  [class*='view-container'] {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 14px)) !important;
+  }
+
+  [data-selector-element-id='RqEftDYAtpHhz7EkR'] {
+    padding-bottom: 30px !important;
+  }
+
+  [data-selector-element-id='dPCGYH39hCqWTxY2v'] {
+    margin-bottom: 26px !important;
+  }
+
+  /* Stack fallback review screen columns on tablet & mobile */
+  [data-selector-element-id='M8cBsGmnmZLGXbauR'] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  [data-selector-element-id='7HiTFjtQxG3uBN4XE'],
+  [data-selector-element-id='S68itzzJ6GjfM4AEM'] {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  [data-selector-element-id='mmcW33YBqkNnwduCg'] h2,
+  [data-selector-element-id='mmcW33YBqkNnwduCg'] .cc__title-title {
+    font-size: 22px !important;
+  }
+
+  .fGpfg,
+  .jphuxh,
+  .StyledRadioGroup__StyledComponent-sc-9697f4e6-0,
+  .MultipleSelection__MultipleSelectionContainer-sc-314b1c5c-0 {
+    column-gap: 10px !important;
+    row-gap: 10px !important;
+  }
+
+  .form_header-wrapper .cc__heading-element h2 {
+    font-size: 55px !important;
+  }
+
+  .heading p {
+    font-size: 48px !important;
+  }
+
+  .heading h2 {
+    font-size: 48px !important;
+    line-height: 1.2 !important;
+  }
+
+  .heading-s h2 {
+    font-size: 35px !important;
+    line-height: 1.3 !important;
+  }
+
+  .heading-s p {
+    font-size: 35px !important;
+    line-height: 1.3 !important;
+  }
+
+  .contact-section_checkbox.cc__checkbox-question-wrapper,
+  .contact-section_checkbox {
+    padding: 0 !important;
+    margin: 12px 0 0 0 !important;
+  }
+
+  .contact-section_checkbox[data-selector-element-id='qtauHbnPXkneHaJsg'],
+  .form_contact-section-field + .contact-section_checkbox {
+    margin-top: 20px !important;
+  }
+
+  .contact-section_checkbox .cc__question-description p {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .form_contact-divider,
+  .cc__divider-element-wrapper {
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .contact-section_checkbox[data-selector-element-id='7yvpHEwhZwKtaB5Ew'] {
+    margin-top: 0 !important;
+  }
+
+  .cc__radioGroup-question-button {
+    padding: 8px 15px !important;
+  }
+
+  .cc__radio-question-item {
+    padding: 10px 15px !important;
+  }
+
+  /* Final Stage Card: Expanded & Generous on Mobile L / Tablet (480px - 768px) */
+  .final_container
+    > .cc__container-element-wrapper:has(.form_final_card-content),
+  .final_container .cc__container-element-wrapper,
+  .final_container .form_final_card-content {
+    width: 100% !important;
+    max-width: 580px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #adhd-clinic_form .form_final-content-wrap,
+  #adhd-clinic_form [data-selector-element-id='9tQhLcKgwz5G3pSdn'],
+  #adhd-clinic_form [data-selector-element-id='qp7n43NcR6cXFSipM'] {
+    padding-top: 24px !important;
+  }
+
+  .form_final_card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 32px 28px !important;
+    min-height: auto !important;
+    gap: 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .form_final-card-img {
+    max-width: 220px !important;
+  }
+
+  .form_final-card-img img,
+  .form_final-card-img .cc__image-element img {
+    max-width: 220px !important;
+    max-height: 220px !important;
+  }
+
+  .therapist-name-parsed {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+  }
+
+  .therapist-credentials-parsed {
+    font-size: 17px !important;
+  }
+
+  .form_final-btn-group {
+    width: 100% !important;
+    max-width: 420px !important;
+  }
+
+  .form_final-btn-group > div,
+  .form_final-btn-group .ifiFqk {
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .form_final-btn-group .cc__button-element-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .form_final-btn-group .cc__button {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    font-size: 15px !important;
+    border-radius: 14px !important;
+  }
+
+  .form_header-wrapper {
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Elevate form containers to ensure fixed footer stays above bottom page sections */
+  .start-page_questionnaire-form,
+  .start-page_qst-form_container,
+  .start-page_questionnaire-form_content-wrap,
+  .start-page_questionnaire-form_content {
+    z-index: 9999 !important;
+  }
+
+  /* Fixed Mobile Footer with Apple Safe Area Inset Support */
+  .form-get-started_footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99999 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    background-color: var(--peach, #eea880) !important;
+    padding-bottom: env(safe-area-inset-bottom, 12px) !important;
+    box-shadow: 0 -3px 12px rgba(22, 67, 74, 0.08) !important;
+    box-sizing: border-box !important;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease !important;
+  }
+
+  /* Soft keyboard suppression: Gracefully hide fixed footer during active mobile typing */
+  body:has(
+      input:focus:not([type='checkbox']):not([type='radio']),
+      textarea:focus
+    )
+    .form-get-started_footer {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  .footer_content {
+    padding: 8px 16px 6px 16px !important;
+    gap: 8px !important;
+    background-color: var(--peach, #eea880) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .footer_progress-bar {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .footer_progress-bar .cc__formula-result-text {
+    color: var(--ivy-title-color, #16434a) !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    font-size: 11px !important;
+  }
+
+  .footer_button-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    flex: 0 0 auto !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Mobile Inverted Navigation Buttons on Peach Footer (< 768px) */
+  .footer_button-wrapper
+    [data-selector-element-id='vRmc2iNqECKf3CrsA']
+    .cc__button,
+  .footer_button-wrapper
+    [data-selector-element-id='4QrXupMkZZFqbNLLA']
+    .cc__button,
+  .footer_content [data-selector-element-id='wxq47FTpjGqR57Pct'] .cc__button,
+  .footer_content [data-selector-element-id='ZooM8SFmgQZMWz3EJ'] .cc__button {
+    background-color: var(--ivy-title-color, #16434a) !important;
+    color: var(--pure-white, #ffffff) !important;
+    border: 2px solid var(--ivy-title-color, #16434a) !important;
+    box-shadow: 0 2px 8px rgba(22, 67, 74, 0.25) !important;
+    min-width: auto !important;
+    padding: 6px 14px !important;
+    height: 38px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.6px !important;
+    white-space: nowrap !important;
+    border-radius: var(--boeder-radius-buttons, 30px) !important;
+    touch-action: manipulation !important;
+  }
+
+  .footer_button-wrapper
+    [data-selector-element-id='vRmc2iNqECKf3CrsA']
+    .cc__button:hover,
+  .footer_button-wrapper
+    [data-selector-element-id='4QrXupMkZZFqbNLLA']
+    .cc__button:hover,
+  .footer_content
+    [data-selector-element-id='wxq47FTpjGqR57Pct']
+    .cc__button:hover,
+  .footer_content
+    [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+    .cc__button:hover {
+    background-color: var(--light-ivy, #2f5b63) !important;
+    border-color: var(--light-ivy, #2f5b63) !important;
+    color: var(--pure-white, #ffffff) !important;
+  }
+
+  /* ADHD Hover variant on Mobile */
+  #adhd-clinic_form
+    .footer_button-wrapper
+    [data-selector-element-id='vRmc2iNqECKf3CrsA']
+    .cc__button:hover,
+  #adhd-clinic_form
+    .footer_button-wrapper
+    [data-selector-element-id='4QrXupMkZZFqbNLLA']
+    .cc__button:hover,
+  #adhd-clinic_form
+    .footer_content
+    [data-selector-element-id='wxq47FTpjGqR57Pct']
+    .cc__button:hover,
+  #adhd-clinic_form
+    .footer_content
+    [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+    .cc__button:hover {
+    background-color: var(--sand, #b36e48) !important;
+    border-color: var(--sand, #b36e48) !important;
+    color: var(--pure-white, #ffffff) !important;
+  }
+
+  .footer_button-wrapper
+    [data-selector-element-id='vRmc2iNqECKf3CrsA']
+    .cc__button
+    .material-symbols-outlined,
+  .footer_button-wrapper
+    [data-selector-element-id='4QrXupMkZZFqbNLLA']
+    .cc__button
+    .material-symbols-outlined,
+  .footer_content
+    [data-selector-element-id='wxq47FTpjGqR57Pct']
+    .cc__button
+    .material-symbols-outlined,
+  .footer_content
+    [data-selector-element-id='ZooM8SFmgQZMWz3EJ']
+    .cc__button
+    .material-symbols-outlined {
+    font-size: 14px !important;
+    margin-left: 4px !important;
+  }
+
+  /* Secondary PREVIOUS button: Dark Ivy text on peach bar */
+  .footer_button-wrapper
+    [data-selector-element-id='73KXcMA4EKc8LnCGM']
+    .cc__button {
+    color: var(--ivy-title-color, #16434a) !important;
+    opacity: 0.8 !important;
+    font-weight: 600 !important;
+    padding: 6px 8px !important;
+    height: 38px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap !important;
+    touch-action: manipulation !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.3 Mobile Portrait (max-width: 479px)
+   -------------------------------------------------------------------------- */
+@media only screen and (max-width: 479px) {
+  .h100 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .header_start-btn .cc__button {
+    padding: 18px 36px !important;
+    font-size: 18px !important;
+    border-radius: 100px !important;
+  }
+
+  .form_header-wrapper {
+    min-height: 400px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .cc__textField-question-input {
+    width: 100% !important;
+  }
+
+  .healthcare-benefits_section button,
+  .price-therapy_section button {
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+
+  /* Fluid responsive buttons for narrow screens */
+  .cc__radioGroup-question-button,
+  .cc__radio-question-item,
+  .cc__checkbox-question-wrapper {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Tighten footer layout on ultra-narrow viewports with Safe Area preservation */
+  .footer_content {
+    padding: 6px 10px 4px 10px !important;
+    gap: 4px !important;
+  }
+
+  .footer_progress-bar .cc__formula-result-text {
+    font-size: 10px !important;
+  }
+
+  .footer_button-wrapper {
+    gap: 3px !important;
+  }
+
+  .footer_button-wrapper
+    [data-selector-element-id='vRmc2iNqECKf3CrsA']
+    .cc__button,
+  .footer_button-wrapper
+    [data-selector-element-id='4QrXupMkZZFqbNLLA']
+    .cc__button,
+  .footer_content [data-selector-element-id='wxq47FTpjGqR57Pct'] .cc__button,
+  .footer_content [data-selector-element-id='ZooM8SFmgQZMWz3EJ'] .cc__button {
+    padding: 5px 8px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.4px !important;
+    height: 36px !important;
+  }
+
+  .footer_button-wrapper
+    [data-selector-element-id='73KXcMA4EKc8LnCGM']
+    .cc__button {
+    padding: 4px 4px !important;
+    font-size: 10px !important;
+    height: 36px !important;
+  }
+
+  /* Final Stage Card: Compact Mobile Portrait */
+  .final_container
+    > .cc__container-element-wrapper:has(.form_final_card-content),
+  .final_container .cc__container-element-wrapper,
+  .final_container .form_final_card-content {
+    max-width: 100% !important;
+  }
+
+  .form_final_card-content {
+    padding: 22px 16px !important;
+    gap: 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .form_final-card-img {
+    max-width: 185px !important;
+  }
+
+  .form_final-card-img img,
+  .form_final-card-img .cc__image-element img {
+    max-width: 185px !important;
+    max-height: 185px !important;
+  }
+
+  .therapist-name-parsed {
+    font-size: 21px !important;
+  }
+
+  .therapist-credentials-parsed {
+    font-size: 15px !important;
+  }
+
+  .form_final-btn-group {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+
+  .form_final-btn-group > div,
+  .form_final-btn-group .ifiFqk {
+    gap: 10px !important;
+  }
+
+  .form_final-btn-group .cc__button {
+    height: 48px !important;
+    min-height: 48px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+}
