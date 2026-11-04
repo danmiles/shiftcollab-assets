@@ -297,7 +297,7 @@ label,
   .start-page_button-arrow {
     position: absolute !important;
     left: 0px !important; /* Stays inside column bounds to prevent overflow clipping */
-    top: -100px !important; /* Sits above the left half of the CTA button */
+    top: -60px !important; /* Sits above the left half of the CTA button */
     width: 125px !important;
     height: auto !important;
     max-width: none !important;
