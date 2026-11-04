@@ -296,9 +296,9 @@ label,
 @media only screen and (min-width: 992px) {
   .start-page_button-arrow {
     position: absolute !important;
-    left: -115px !important;
-    top: -55px !important;
-    width: 130px !important;
+    left: -30px !important; /* Stays inside column bounds to prevent overflow clipping */
+    top: -90px !important; /* Sits above the left half of the CTA button */
+    width: 125px !important;
     height: auto !important;
     max-width: none !important;
     pointer-events: none !important;
