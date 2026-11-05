@@ -910,10 +910,19 @@ label,
 #adhd-clinic_form .calculator,
 #adhd-clinic_form .cc-calculator,
 #adhd-clinic_form .cc,
-#adhd-clinic_form .sc-KzItE,
 #adhd-clinic_form .cc__view,
 #adhd-clinic_form .cc__view-container {
   background-color: var(--ivy-title-color, #16434a) !important;
+}
+
+/* ADHD Clinic: White pill background for the Age Range Slider */
+#adhd-clinic_form .sc-KzItE,
+#adhd-clinic_form .cc__rangeSlider-question-wrapper input[type='range'],
+#adhd-clinic_form [data-selector-element-id='FgStCrtCCyrLxAMLk'] input[type='range'] {
+  background-color: var(--pure-white, #ffffff) !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
 }
 
 #adhd-clinic_form .h100 {
