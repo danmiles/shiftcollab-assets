@@ -1,12 +1,12 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.7
+Version: v5.8
 Date: 2026-11-05
 Changelog:
-- Added scoped responsive scaling for ADHD Clinic (#adhd-clinic_form) CTA button across tablet and mobile viewports.
-- Enforced white-space: nowrap and optimized mobile padding to prevent CTA text wrapping on screens < 440px.
-- Proportionally scaled CTA button icon size on mobile screens.
-- Preserved white background on ADHD age range slider, in-flow mobile footer, and dark ivy theme.
+- Neutralized mobile footer border-radius (border-radius: 0) to delegate corner clipping to parent Webflow card containers.
+- Resolved final-step navigation collision: anchored PREVIOUS and SEE YOUR RESULTS (P2DRnZJbuvYuLmo6f) together on the right.
+- Constrained .footer_progress-bar with max-width: 45% and margin-right: auto to eliminate centered button drift.
+- Preserved ADHD Clinic (#adhd-clinic_form) scoped CTA button responsive scaling and white age-slider pill.
 */
 
 /* ==========================================================================
@@ -493,10 +493,10 @@ label,
 }
 
 .footer_content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 16px !important;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -918,7 +918,9 @@ label,
 /* ADHD Clinic: White pill background for the Age Range Slider */
 #adhd-clinic_form .sc-KzItE,
 #adhd-clinic_form .cc__rangeSlider-question-wrapper input[type='range'],
-#adhd-clinic_form [data-selector-element-id='FgStCrtCCyrLxAMLk'] input[type='range'] {
+#adhd-clinic_form
+  [data-selector-element-id='FgStCrtCCyrLxAMLk']
+  input[type='range'] {
   background-color: var(--pure-white, #ffffff) !important;
   padding: 20px !important;
   border-radius: 8px !important;
@@ -1557,7 +1559,7 @@ label,
     justify-content: center;
   }
 
-  /* In-flow Mobile Footer (No viewport docking / No iOS WebKit traps) */
+  /* In-flow Mobile Footer (Natural document flow / No iOS WebKit traps) */
   .form-get-started_footer {
     position: relative !important;
     bottom: auto !important;
@@ -1576,13 +1578,14 @@ label,
     pointer-events: auto !important;
   }
 
+  /* Footer Content Layout: Progress bar left, buttons grouped right */
   .footer_content {
     padding: 8px 16px 6px 16px !important;
-    gap: 8px !important;
+    gap: 10px !important;
     background-color: var(--peach, #eea880) !important;
     display: flex !important;
     flex-direction: row !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     align-items: center !important;
     flex-wrap: nowrap !important;
   }
@@ -1590,6 +1593,8 @@ label,
   .footer_progress-bar {
     flex: 1 1 auto !important;
     min-width: 0 !important;
+    max-width: 45% !important;
+    margin-right: auto !important;
   }
 
   .footer_progress-bar .cc__formula-result-text {
@@ -1599,7 +1604,8 @@ label,
     font-size: 11px !important;
   }
 
-  .footer_button-wrapper {
+  .footer_button-wrapper,
+  .footer_content > [data-selector-element-id='P2DRnZJbuvYuLmo6f'] {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
