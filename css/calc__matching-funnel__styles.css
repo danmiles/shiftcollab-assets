@@ -496,8 +496,8 @@ label,
   justify-content: flex-start !important;
   align-items: center !important;
   gap: 16px !important;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .footer_button-wrapper
@@ -1058,8 +1058,8 @@ label,
 }
 
 #adhd-clinic_form .footer_content {
-  padding-top: 12px !important;
-  padding-bottom: 12px !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
   background-color: var(--peach, #eea880) !important;
 }
 
@@ -1579,7 +1579,7 @@ label,
 
   /* Footer Content Layout: Progress bar left, buttons grouped right */
   .footer_content {
-    padding: 8px 16px 6px 16px !important;
+    padding: 12px 15px 12px 15px !important;
     gap: 10px !important;
     background-color: var(--peach, #eea880) !important;
     display: flex !important;
@@ -1797,9 +1797,15 @@ label,
     margin-right: auto !important;
   }
 
+  /* Mobile Portrait: Generous breathing room for in-flow footer */
+  .form-get-started_footer {
+    margin-top: 24px !important;
+    padding: 0 !important;
+  }
+
   .footer_content {
-    padding: 6px 10px 4px 10px !important;
-    gap: 4px !important;
+    padding: 16px 14px !important;
+    gap: 8px !important;
   }
 
   .footer_progress-bar .cc__formula-result-text {
