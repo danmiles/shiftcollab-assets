@@ -1,11 +1,12 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.9
+Version: v6.0
 Date: 2026-11-05
 Changelog:
-- Fixed premature SEE YOUR RESULTS button visibility by enforcing ConvertCalculator native hidden state (.cc__element--hidden).
-- Decoupled P2DRnZJbuvYuLmo6f from forced display: flex override to prevent button leakage across early form steps.
-- Maintained right-aligned navigation group and in-flow mobile footer architecture.
+- Expanded mobile portrait (max-width: 479px) in-flow footer padding to 16px vertical breathing room.
+- Increased margin-top to 24px for clear visual separation between questions and footer controls.
+- Optimized mobile touch ergonomics for navigation buttons and progress bar.
+- Preserved all ADHD Clinic (#adhd-clinic_form) scoped tokens and clean WebKit containment resets.
 */
 
 /* ==========================================================================
