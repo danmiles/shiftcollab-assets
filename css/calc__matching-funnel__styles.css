@@ -1,12 +1,11 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.8
+Version: v5.9
 Date: 2026-11-05
 Changelog:
-- Neutralized mobile footer border-radius (border-radius: 0) to delegate corner clipping to parent Webflow card containers.
-- Resolved final-step navigation collision: anchored PREVIOUS and SEE YOUR RESULTS (P2DRnZJbuvYuLmo6f) together on the right.
-- Constrained .footer_progress-bar with max-width: 45% and margin-right: auto to eliminate centered button drift.
-- Preserved ADHD Clinic (#adhd-clinic_form) scoped CTA button responsive scaling and white age-slider pill.
+- Fixed premature SEE YOUR RESULTS button visibility by enforcing ConvertCalculator native hidden state (.cc__element--hidden).
+- Decoupled P2DRnZJbuvYuLmo6f from forced display: flex override to prevent button leakage across early form steps.
+- Maintained right-aligned navigation group and in-flow mobile footer architecture.
 */
 
 /* ==========================================================================
@@ -1604,8 +1603,7 @@ label,
     font-size: 11px !important;
   }
 
-  .footer_button-wrapper,
-  .footer_content > [data-selector-element-id='P2DRnZJbuvYuLmo6f'] {
+  .footer_button-wrapper {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -1613,6 +1611,18 @@ label,
     gap: 6px !important;
     flex: 0 0 auto !important;
     flex-wrap: nowrap !important;
+  }
+
+  /* SEE YOUR RESULTS Container: Strictly respect ConvertCalculator native hidden state */
+  .footer_content > [data-selector-element-id='P2DRnZJbuvYuLmo6f'] {
+    flex: 0 0 auto !important;
+  }
+
+  .footer_content
+    > [data-selector-element-id='P2DRnZJbuvYuLmo6f'].cc__element--hidden,
+  .footer_content
+    > [data-selector-element-id='P2DRnZJbuvYuLmo6f'][style*='display: none'] {
+    display: none !important;
   }
 
   /* Mobile Navigation Buttons on Peach Footer */
