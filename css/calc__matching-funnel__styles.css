@@ -1,12 +1,13 @@
 /*
 File: css/calc__matching-funnel__styles.css
-Version: v5.4
-Date: 2026-11-04
+Version: v5.6
+Date: 2026-11-05
 Changelog:
-- Architected .start-page_button-arrow layout: anchored to the left of the 'START NOW' CTA on desktop (min-width: 992px).
-- Centered decorative arrow vertically above CTA button across tablet and mobile viewports (max-width: 991px).
-- Resolved horizontal inline-wrapping glitch at intermediate viewports (500px-768px).
-- Preserved fixed mobile footer stability, Apple Safe Area insets, and zero-suppression focus handling.
+- Completely restored ADHD Clinic (#adhd-clinic_form) scoped dark ivy theme and eliminated rogue cloud/white canvas overrides.
+- Suppressed decorative start-page arrow strictly under #adhd-clinic_form.
+- Re-anchored ADHD clinic CTA button to brand Peach with Sand hover, matching master demo benchmark.
+- Scoped 100% of clinic styling exclusively to #adhd-clinic_form ID selectors.
+- Preserved desktop arrow positioning and mobile in-flow footer stability for /start.
 */
 
 /* ==========================================================================
@@ -226,7 +227,7 @@ label,
 }
 
 /* ==========================================================================
-   4. HEADER MAIN CTA BUTTON ("START NOW") & DECORATIVE ARROW
+   4. HEADER MAIN CTA BUTTON ("START NOW") & DECORATIVE ARROW (/start)
    ========================================================================== */
 .header_start-btn {
   position: relative !important;
@@ -292,12 +293,12 @@ label,
   width: 180px !important;
 }
 
-/* Desktop Decorative Arrow (min-width: 992px): Anchored to the left of the button */
+/* Desktop Decorative Arrow (min-width: 992px): Anchored to the left of the button on /start */
 @media only screen and (min-width: 992px) {
   .start-page_button-arrow {
     position: absolute !important;
-    left: 50px !important; /* Stays inside column bounds to prevent overflow clipping */
-    top: -140px !important; /* Sits above the left half of the CTA button */
+    left: -30px !important;
+    top: -90px !important;
     width: 125px !important;
     height: auto !important;
     max-width: none !important;
@@ -892,37 +893,75 @@ label,
    9. CONTEXTUAL SCOPED OVERRIDES BY WRAPPER ID
    ========================================================================== */
 
-/* 9.1 #adhd-clinic_form (ADHD Clinic CMS Template) */
-#adhd-clinic_form .cc {
+/* ==========================================================================
+   9.1 #adhd-clinic_form (ADHD CLINIC CMS TEMPLATE - BENCHMARK RESTORATION)
+   ========================================================================== */
+
+/* 1. Suppress the decorative /start arrow completely on ADHD Clinic */
+#adhd-clinic_form .start-page_button-arrow {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 2. Enforce Dark Ivy Canvas on the whole calculator hierarchy */
+#adhd-clinic_form .calculator,
+#adhd-clinic_form .cc-calculator,
+#adhd-clinic_form .cc,
+#adhd-clinic_form .sc-KzItE,
+#adhd-clinic_form .cc__view,
+#adhd-clinic_form .cc__view-container {
   background-color: var(--ivy-title-color, #16434a) !important;
 }
 
 #adhd-clinic_form .h100 {
-  flex-direction: column;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
 }
 
+/* 3. Typography: Sub-brand Coax Heading Font & Pure White text on Dark Ivy */
+#adhd-clinic_form .cc__title-title,
+#adhd-clinic_form .heading p,
+#adhd-clinic_form .heading h1,
+#adhd-clinic_form .heading h2,
 #adhd-clinic_form .form_header-wrapper .cc__heading-element h1,
 #adhd-clinic_form .form_header-wrapper .cc__heading-element h2,
-#adhd-clinic_form .form_header-wrapper .cc__heading-element p,
 #adhd-clinic_form .heading,
 #adhd-clinic_form .heading *,
-#adhd-clinic_form .heading p,
-#adhd-clinic_form .heading div,
-#adhd-clinic_form .heading span,
 #adhd-clinic_form .heading-s,
 #adhd-clinic_form .heading-s *,
 #adhd-clinic_form .heading-s p,
 #adhd-clinic_form .heading-s div,
-#adhd-clinic_form .heading-s span,
-#adhd-clinic_form .cc__title-title {
+#adhd-clinic_form .heading-s span {
   font-family:
     var(--_clinics---clinic-heading-font, 'Coax'), 'Coax', sans-serif !important;
   font-weight: 400 !important;
   color: var(--pure-white, #ffffff) !important;
   letter-spacing: normal !important;
   font-style: normal !important;
+  line-height: 1.2 !important;
 }
 
+#adhd-clinic_form .heading,
+#adhd-clinic_form .heading p,
+#adhd-clinic_form .heading div,
+#adhd-clinic_form .form_header-wrapper .cc__heading-element h1,
+#adhd-clinic_form .form_header-wrapper .cc__heading-element h2 {
+  font-size: 50px !important;
+}
+
+#adhd-clinic_form .heading-s,
+#adhd-clinic_form .heading-s p,
+#adhd-clinic_form .heading-s div,
+#adhd-clinic_form .heading-s span {
+  font-size: 35px !important;
+}
+
+#adhd-clinic_form .form_header-wrapper p,
 #adhd-clinic_form .calculator p,
 #adhd-clinic_form .calculator h4,
 #adhd-clinic_form .cc__question-title,
@@ -931,17 +970,45 @@ label,
   color: var(--pure-white, #ffffff) !important;
 }
 
-#adhd-clinic_form .sc-KzItE {
-  background-color: var(--pure-white, #ffffff) !important;
-  padding: 20px;
-}
-
 #adhd-clinic_form .form_header-wrapper {
-  height: 100%;
-  width: 100%;
-  padding: 80px 50px;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding: 80px 50px !important;
 }
 
+/* 4. Master Start Button: Exact Brand Peach with Ivy text & Sand Hover (Demo Benchmark) */
+#adhd-clinic_form .header_start-btn .cc__button {
+  padding: 24px 60px !important;
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  width: auto !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  border-radius: 100px !important;
+  border: 3px solid var(--peach, #eea880) !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+#adhd-clinic_form .header_start-btn .cc__button:hover {
+  background-color: var(--sand, #b36e48) !important;
+  border-color: var(--pure-white, #ffffff) !important;
+  color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 6px 22px rgba(179, 110, 72, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+#adhd-clinic_form .header_start-btn .cc__button:active {
+  transform: translateY(0) !important;
+}
+
+/* 5. Contact Section: Pure White on Dark Ivy */
 #adhd-clinic_form .form_contact-section-field label,
 #adhd-clinic_form .form_contact-section-field .cc__question-title {
   color: var(--pure-white, #ffffff) !important;
@@ -974,13 +1041,14 @@ label,
   color: #ff9076 !important;
 }
 
+/* 6. Footer Navigation: Brand Peach Bar with Ivy Buttons */
 #adhd-clinic_form .form-get-started_footer {
   background-color: var(--peach, #eea880) !important;
 }
 
 #adhd-clinic_form .footer_content {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
   background-color: var(--peach, #eea880) !important;
 }
 
@@ -1047,8 +1115,10 @@ label,
 
 #adhd-clinic_form .footer_progress-bar .cc__formula-result-text {
   color: var(--ivy-title-color, #16434a) !important;
+  font-weight: 500 !important;
 }
 
+/* 7. Final Therapist Results Cards on Clinic Page */
 #adhd-clinic_form .kEilOV,
 #adhd-clinic_form [data-selector-element-id='wsbjtKNrcmMG5FF9u'],
 #adhd-clinic_form
@@ -1187,7 +1257,7 @@ label,
     font-size: 28px !important;
   }
 
-  /* Centered Arrow Column Layout on Tablet */
+  /* Centered Arrow Column Layout on Tablet (/start only) */
   .header_start-btn .cc__button-element > div,
   .header_start-btn .kWHZI,
   .header_start-btn [class*='kWHZI'] {
@@ -1207,6 +1277,18 @@ label,
     max-width: 110px !important;
     height: auto !important;
     pointer-events: none !important;
+  }
+
+  /* ADHD Clinic Heading overrides on Tablet */
+  #adhd-clinic_form .heading p,
+  #adhd-clinic_form .heading h2 {
+    font-size: 50px !important;
+    line-height: 1.2 !important;
+  }
+
+  #adhd-clinic_form .heading-s h2 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
   }
 
   .form_final_card-content {
@@ -1277,7 +1359,7 @@ label,
   .sc-ftWlEF.sc-faCEWe.ecAwQh.gHHYKI,
   [class*='ViewContainer'],
   [class*='view-container'] {
-    padding-bottom: calc(90px + env(safe-area-inset-bottom, 14px)) !important;
+    padding-bottom: 20px !important;
   }
 
   [data-selector-element-id='RqEftDYAtpHhz7EkR'] {
@@ -1317,6 +1399,19 @@ label,
 
   .form_header-wrapper .cc__heading-element h2 {
     font-size: 55px !important;
+  }
+
+  /* ADHD Clinic Headings on Mobile */
+  #adhd-clinic_form .heading p,
+  #adhd-clinic_form .heading h2 {
+    font-size: 48px !important;
+    line-height: 1.2 !important;
+  }
+
+  #adhd-clinic_form .heading-s h2,
+  #adhd-clinic_form .heading-s p {
+    font-size: 35px !important;
+    line-height: 1.3 !important;
   }
 
   .contact-section_checkbox.cc__checkbox-question-wrapper,
@@ -1432,25 +1527,19 @@ label,
     justify-content: center;
   }
 
-  .start-page_questionnaire-form,
-  .start-page_qst-form_container,
-  .start-page_questionnaire-form_content-wrap,
-  .start-page_questionnaire-form_content {
-    z-index: 9999 !important;
-  }
-
-  /* Fixed Mobile Footer with Apple Safe Area Inset Support */
+  /* In-flow Mobile Footer (No viewport docking / No iOS WebKit traps) */
   .form-get-started_footer {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 99999 !important;
-    -webkit-transform: none !important;
-    transform: none !important;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: 10 !important;
     background-color: var(--peach, #eea880) !important;
-    padding-bottom: env(safe-area-inset-bottom, 12px) !important;
-    box-shadow: 0 -3px 12px rgba(22, 67, 74, 0.08) !important;
+    border-radius: 0 0 20px 20px !important;
+    margin-top: 20px !important;
+    padding-bottom: 8px !important;
+    box-shadow: none !important;
     box-sizing: border-box !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -1490,6 +1579,7 @@ label,
     flex-wrap: nowrap !important;
   }
 
+  /* Mobile Navigation Buttons on Peach Footer */
   .footer_button-wrapper
     [data-selector-element-id='vRmc2iNqECKf3CrsA']
     .cc__button,
