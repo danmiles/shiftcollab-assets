@@ -297,8 +297,8 @@ label,
 @media only screen and (min-width: 992px) {
   .start-page_button-arrow {
     position: absolute !important;
-    left: -30px !important;
-    top: -90px !important;
+    left: 50px !important;
+    top: -140px !important;
     width: 125px !important;
     height: auto !important;
     max-width: none !important;
