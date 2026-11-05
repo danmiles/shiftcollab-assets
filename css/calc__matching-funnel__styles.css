@@ -1223,9 +1223,31 @@ label,
   }
 }
 
-/* 10.2 Mobile Landscape & Tablet Portrait (max-width: 768px) */
+/* ==========================================================================
+   10.2 Mobile Landscape & Tablet Portrait (max-width: 768px)
+   ========================================================================== */
 @media only screen and (max-width: 768px) {
-  /* Strip containing block traps from all parents on mobile */
+  /* HARD RESET: Carpet neutralization of containing block traps on WebKit */
+  .start-page_questionnaire-form,
+  .start-page_questionnaire-form *,
+  .start-page_qst-form_container,
+  .start-page_qst-form_container *,
+  .start-page_questionnaire-form_content-wrap,
+  .start-page_questionnaire-form_content-wrap *,
+  .start-page_questionnaire-form_content,
+  .start-page_questionnaire-form_content *,
+  .start-page_questionnaire-form_convert-calc,
+  .start-page_questionnaire-form_convert-calc *,
+  .calculator,
+  .calculator *,
+  .cc-calculator,
+  .cc-calculator *,
+  .cc,
+  .cc * {
+    contain: none !important;
+  }
+
+  /* Structural parent transforms reset */
   .start-page_questionnaire-form,
   .start-page_qst-form_container,
   .start-page_questionnaire-form_content-wrap,
@@ -1239,7 +1261,6 @@ label,
     -webkit-transform: none !important;
     filter: none !important;
     perspective: none !important;
-    contain: none !important;
     will-change: auto !important;
   }
 
