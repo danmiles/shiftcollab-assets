@@ -98,9 +98,19 @@
     const footer = document.querySelector('.form-get-started_footer');
     if (!footer) return;
 
-    // Teleport footer directly to document.body to bypass all WebKit containing block traps
-    if (footer.parentElement !== document.body) {
-      document.body.appendChild(footer);
+    let parent = footer.parentElement;
+    while (parent && parent !== document.body) {
+      if (parent.style.transform && parent.style.transform !== 'none') {
+        parent.style.setProperty('transform', 'none', 'important');
+        parent.style.setProperty('-webkit-transform', 'none', 'important');
+      }
+      if (parent.style.contain && parent.style.contain !== 'none') {
+        parent.style.setProperty('contain', 'none', 'important');
+      }
+      if (parent.style.filter && parent.style.filter !== 'none') {
+        parent.style.setProperty('filter', 'none', 'important');
+      }
+      parent = parent.parentElement;
     }
   };
 
