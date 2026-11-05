@@ -1566,7 +1566,7 @@ label,
     width: 100% !important;
     z-index: 10 !important;
     background-color: var(--peach, #eea880) !important;
-    border-radius: 0 0 20px 20px !important;
+    border-radius: 0 !important;
     margin-top: 20px !important;
     padding-bottom: 8px !important;
     box-shadow: none !important;
