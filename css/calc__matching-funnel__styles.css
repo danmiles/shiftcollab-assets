@@ -1161,12 +1161,29 @@ label,
   border: 2px solid var(--peach, #eea880) !important;
 }
 
-#adhd-clinic_form [data-selector-element-id='dPCGYH39hCqWTxY2v'] .cc__button:hover {
+#adhd-clinic_form
+  [data-selector-element-id='dPCGYH39hCqWTxY2v']
+  .cc__button:hover {
   background-color: var(--sand, #b36e48) !important;
   border-color: var(--pure-white, #ffffff) !important;
   color: var(--pure-white, #ffffff) !important;
   box-shadow: 0 4px 18px rgba(179, 110, 72, 0.4) !important;
   transform: translateY(-2px);
+}
+
+/* ADHD Clinic: White badge background for review screen logo */
+#adhd-clinic_form .final_logo-image img,
+#adhd-clinic_form [data-selector-element-id='TcsG8HRhu74CkCEjh'] img {
+  background-color: var(--pure-white, #ffffff) !important;
+  padding: 20px !important;
+  border-radius: 16px !important;
+  box-sizing: content-box !important;
+  max-width: 80px !important;
+  max-height: 90px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto 16px auto !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* ADHD Clinic Text Highlights */
