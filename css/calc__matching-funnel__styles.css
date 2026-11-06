@@ -1154,6 +1154,21 @@ label,
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2) !important;
 }
 
+/* ADHD Clinic: Fallback Review Screen Button (Peach CTA on Dark Ivy) */
+#adhd-clinic_form [data-selector-element-id='dPCGYH39hCqWTxY2v'] .cc__button {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  border: 2px solid var(--peach, #eea880) !important;
+}
+
+#adhd-clinic_form [data-selector-element-id='dPCGYH39hCqWTxY2v'] .cc__button:hover {
+  background-color: var(--sand, #b36e48) !important;
+  border-color: var(--pure-white, #ffffff) !important;
+  color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 4px 18px rgba(179, 110, 72, 0.4) !important;
+  transform: translateY(-2px);
+}
+
 /* ADHD Clinic Text Highlights */
 .clinic-adhd_highlight-underline {
   position: relative;
