@@ -879,6 +879,80 @@ label,
 }
 
 /* ==========================================================================
+   UNIVERSAL: Any Standalone Results CTA Button Outside Therapist Cards
+   (Applies to "CALL US", "BROWSE TEEN THERAPISTS", or any future service CTA)
+   ========================================================================== */
+
+/* 1. Center and constrain ANY button that sits outside .form_final_card-content */
+.form_final-btn-group:not(.form_final_card-content *) {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 18px !important;
+  margin-bottom: 24px !important;
+}
+
+.form_final-btn-group:not(.form_final_card-content *) .cc__button-element,
+.form_final-btn-group:not(.form_final_card-content *) .kWHZI,
+.form_final-btn-group:not(.form_final_card-content *) [class*='kWHZI'] {
+  width: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Base button geometry & colors for light pages (/start, /a/start-today) */
+.form_final-btn-group:not(.form_final_card-content *) .cc__button {
+  width: auto !important;
+  min-width: 200px !important;
+  max-width: 320px !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  padding: 10px 28px !important;
+  border-radius: var(--boeder-radius-buttons, 30px) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  background-color: var(--ivy-title-color, #16434a) !important;
+  color: var(--pure-white, #ffffff) !important;
+  border: 2px solid var(--ivy-title-color, #16434a) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
+
+.form_final-btn-group:not(.form_final_card-content *) .cc__button:hover {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  border-color: var(--peach, #eea880) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(22, 67, 74, 0.2) !important;
+}
+
+.form_final-btn-group:not(.form_final_card-content *) .cc__button:active {
+  transform: translateY(0);
+}
+
+/* 2. Color Inversion for ADHD Clinic (Peach on Dark Ivy) */
+#adhd-clinic_form .form_final-btn-group:not(.form_final_card-content *) .cc__button {
+  background-color: var(--peach, #eea880) !important;
+  color: var(--ivy-title-color, #16434a) !important;
+  border-color: var(--peach, #eea880) !important;
+}
+
+#adhd-clinic_form .form_final-btn-group:not(.form_final_card-content *) .cc__button:hover {
+  background-color: var(--sand, #b36e48) !important;
+  border-color: var(--pure-white, #ffffff) !important;
+  color: var(--pure-white, #ffffff) !important;
+  box-shadow: 0 4px 18px rgba(179, 110, 72, 0.4) !important;
+}
+/* ==========================================================================
    8. FALLBACK MANUAL REVIEW SCREEN ARCHITECTURE
    ========================================================================== */
 [data-selector-element-id='RqEftDYAtpHhz7EkR'] {
