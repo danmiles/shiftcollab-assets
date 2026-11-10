@@ -293,6 +293,11 @@ label,
   width: 180px !important;
 }
 
+/* Suppress decorative arrow globally on ANY funnel that is NOT the main /start intake */
+:not(#get-started_form) .start-page_button-arrow {
+  display: none !important;
+}
+
 /* Desktop Decorative Arrow (min-width: 992px): Anchored to the left of the button on /start */
 @media only screen and (min-width: 992px) {
   .start-page_button-arrow {
