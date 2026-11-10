@@ -891,11 +891,14 @@ label,
 /* 1. Center and constrain ANY button that sits outside .form_final_card-content */
 .form_final-btn-group:not(.form_final_card-content *) {
   width: 100% !important;
+  max-width: 100% !important; 
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 18px !important;
+  margin-bottom: 24px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  margin-top: 18px !important;
-  margin-bottom: 24px !important;
 }
 
 .form_final-btn-group:not(.form_final_card-content *) .cc__button-element,
